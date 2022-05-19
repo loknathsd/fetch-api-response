@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="margin-left: 500px;">
+        <h1>Fetch API Response</h1>
+        <h3>Users Name :</h3>
+        <ul id="users-container">
+
+        </ul>
+    </div>
+
+
+
+    <script>
+     
+        const url = 'https://gorest.co.in/public/v1/users'
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>displayUser(data.data))
+
+
+
+        function displayUser(users){
+            console.log(users)
+            const userNames = users.map(user=>user.name)
+            const ul = document.getElementById('users-container')
+
+            for(let i=0 ; i<userNames.length ; i++){
+                const user = userNames[i];
+                const li = document.createElement('li');
+                li.innerText = user;
+                ul.appendChild(li)
+            }
+        }
+      </script>
+
+</body>
+
+</html>
